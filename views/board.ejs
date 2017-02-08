@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Diki Asset</title>
+		<meta charset="utf8">
+		<script src="../lib/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" href="../stylesheets/style.css">
+		<script src="../lib/semantic.min.js"></script>
+		<link rel="stylesheet" href="../lib/semantic.min.css">
+		<script>
+
+	
+			function new_submit(option){
+
+				var inWriter = $('.addWriter_').val();
+				var inTitle = $('.addTitle_').val();
+				var inPassword = $('.addPassword_').val();
+				var inContent = $('.addContent_').val();
+
+				if(option == 'add'){
+
+				if(inWriter == '' || inTitle == '' || inPassword=='' || inContent==''){
+
+						alert('내용을 모두 입력해야 합니다.');
+						return
+				}else{
+						$('#writeAction').submit();
+				}
+
+				}
+			}
+
+			
+			function new_cancel(option){
+
+				if(option == 'add'){
+					var selection = confirm('취소하시겠습니까?');
+					if(selection==true){
+
+						$(location).attr('href','/');
+					
+					}else if(selection==false){
+					
+						return;
+					}
+				}
+			}
+
+
+			function displayForm(){
+				$('#write_form').show();
+				$('#main_board').hide();
+			}
+
+		</script>
+	</head>
+
+	<body class="ui center aligned container" id="board_body">
+
+	<br/><br/><br/><br/>
+
+	<!--header-->
+	<div class="ui left aligned header">
+		<h1 style="font-size:44px;"><a href="/board" id="board_header"><b>Diki &nbsp;&nbsp;Factory</b></a></h1>
+	</div>
+	
+	<!--header End-->
+
+	<div class="ui section divider"></div>
+
+
+
+
+	<!--Main menu-->
+
+
+	<div class="ui massive stackable grey inverted borderless menu" id="board_menu">
+
+		<a class="active item"><b><i class="home icon"></i></b></a>
+		<a class="item"><i class="cube icon"></i>&nbsp;&nbsp;<b>Engine</b></a>
+		<a class="item"><i class="rocket icon"></i>&nbsp;&nbsp;<b>Ani</b></a>
+		<a class="item"><i class="film icon"></i>&nbsp;&nbsp;<b>Video</b></a>
+		<a href="/board" class="item"><i class="users icon"></i>&nbsp;&nbsp;<b>Board</b></a>
+			<div class="right item">
+				<div class="ui icon input">
+					<input type="text" name="header_search" placeholder="Search..."/>
+					<i class="search_icon"></i>
+				</div>
+			</div>
+	</div>
+
+
+	<!--Main menu-->
+
+
+	
+
+	<div class="ui divider"></div>
+
+	<!--first content-->
+
+	<div class="ui grid">
+
+
+		<div class="ui six wide column">
+	
+	<table class="ui very basic collapsing celled table" id="table_one">
+  
+  <tbody>
+
+    <tr>
+
+      <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="users big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Character</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+      <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="car big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Vehicle</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+  	  <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="road big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Exterior</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="settings big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Mechanic</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+      <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="television big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Eletronic</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+  	  <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="home big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Interior</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+    </tr>
+
+
+	<tr>
+      <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="tree big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Environment</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+      <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="bomb big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Military</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+  	  <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="food big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Food</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+    </tr>
+
+
+      <tr>
+
+      <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="diamond big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;Fashion</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+      <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="image big inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;HDRI</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+
+  	  <td>
+        <h4 class="ui image header">
+          <a href="#">
+         	 <i class="plus large inverted blue icon"></i>
+            	<div class="content">
+              		<b>&nbsp;&nbsp;&nbsp;&nbsp;more..</b>
+            	</div>
+         </a>
+    	</h4>
+  	  </td>
+  	  
+    </tr>
+
+  </tbody>
+</table>
+
+</div>
+
+	<div class="ten wide column">
+		<div class="ui big image">
+			<img src="../images/test02.jpg">
+		</div>
+	</div>
+</div>
+
+
+	<!--first content End-->
+
+	<div class="ui divider"></div>
+
+	<!--second content start-->
+
+		<div id="main_board">
+		<table>
+			<% var i = 0; %>
+			<% if(content.length > 0){ %>
+
+				<% i++; %>
+				<% content.forEach(function(item){ %>
+
+					<tr>
+						<td class="number"><%=i%></td>
+						<td class="title"><a href="/view?id=<%=item._id%>"><%=item.title%></a></td>
+						<td class="writer"><%=item.writer%></td>
+						<td class="date"><%=item.date%></td>
+						<td class="cnt"><%=item.count%></td>
+
+					</tr>
+				<% }) %>
+
+			<% }else{ %>
+				<tr>
+					<td>게시물이 없습니다.</td>
+				</tr>
+			<% } %>
+		</table>
+
+			<a onclick="displayForm();">새글 작성</a>
+
+		</div>
+
+		<div id="write_form">
+			<form id="writeAction" action="/" method="post">
+
+				<input type="text" class="addWriter_" name="addWriter" placeholder="작성자">
+				<input type="text" class="addTitle_" name="addTitle" placeholder="제목">
+				<input type="text" class="addPassword_" name="addPassword" placeholder="비밀번호">
+				<textarea class="addContent_" name="addContent" cols="80" rows="20"></textarea>
+
+			</form>
+			<div id="lower_grp">
+
+				<a onclick="new_submit('add');">확인</a>
+				<a onclick="new_cancel('add');">취소</a>
+
+			</div>
+		</div>
+
+
+	</div>
+
+	</body>
+</html>

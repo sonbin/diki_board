@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf8">
+		<script src="../lib/jquery-3.1.1.min.js"></script>
+		<script src="../lib/semantic.min.js"></script>
+		<link rel="stylesheet" href="../lib/semantic.min.css">
+	</head>
+
+	<body class="ui container">
+		
+		<div class="ui center aligned container">
+
+			<div class="ui large header"><h1><a href="/">Diki Board</a></h1></div>
+		</div>
+
+		<br/><br/><br/></br/>
+		<div class="ui piled segment">
+			<div class="view_writer"><%=content.writer%></div>
+			<div class="view_title"><%=content.title%></div>
+			<div class="view_date"><%=content.date%></div>
+		</div>
+
+		
+		<div class="ui center container">
+			<div class="margin top"></div>
+			<div class="ui left floated green segment"><%=content.contents%></div>
+			<div class="ui left floated red attached segment"><h3>test1</h3></div>
+			<div class="ui left floated blue attached segment"><h3>test2</h3></div>
+			<div class="ui left floated violet attached segment"><h3>test3</h3></div>
+			<button class="ui inverted green animated button">
+				<div class="visible content">test4</div>
+				<div class="hidden content">야이 씨발넘아</div>
+			</button>
+			
+		</div>
+	
+		
+
+
+	</body>
+</html>

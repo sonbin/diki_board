@@ -1,0 +1,49 @@
+#board_body {
+  
+  background-color:#4F5256;
+  width:1400px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#write_form {
+	display:none;
+}
+
+#board_menu,#first_column {
+	background-color:#323740;
+}
+#board_header {
+	color:white;
+}
+
+#first_column {
+	width:1400px;
+	margin-left:0.1px;
+	color:white;
+}
+
+#left_top_first,#left_top_second,#left_top_third {
+	background-color: #323740;
+	height:120px;
+	margin:10px;
+	
+}
+
+#char_icon {
+	margin-top:15px;
+}
+
+#text_char {
+
+
+	color:white;
+}
+
+#table_one {
+	height:400px;
+	padding:10px;
+	background-color: #323740;
+}
