@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
-		<meta charset="utf8">
-		<script src="../lib/jquery-3.1.1.min.js"></script>
-		<script src="../lib/semantic.min.js"></script>
-		<link rel="stylesheet" href="../lib/semantic.min.css">
+		<% include ./head.ejs %>
 	</head>
 
-	<body class="ui container">
+	<body id="body_color">
 		
-		<div class="ui center aligned container">
+		<!--header-->
+		
+		<% include ./header.ejs %>
 
-			<div class="ui large header"><h1><a href="/">Diki Board</a></h1></div>
-		</div>
+		<!--header End-->
 
-		<br/><br/><br/></br/>
+		<!--Main menu-->
+
+		<div class="ui center aligned container" id="board_body">
+
+			<% include ./header_menu.ejs %>
+
+		<!--Main menu-->
 		<div class="ui piled segment">
 			<div class="view_writer"><%=content.writer%></div>
 			<div class="view_title"><%=content.title%></div>
@@ -23,21 +26,23 @@
 		</div>
 
 		
-		<div class="ui center container">
+		<div class="ui center column">
 			<div class="margin top"></div>
-			<div class="ui left floated green segment"><%=content.contents%></div>
-			<div class="ui left floated red attached segment"><h3>test1</h3></div>
-			<div class="ui left floated blue attached segment"><h3>test2</h3></div>
-			<div class="ui left floated violet attached segment"><h3>test3</h3></div>
+			<div class="ui left floated green item"><%=content.contents%></div>
+			<div class="ui left floated red attached item"><h3>test1</h3></div>
+			<div class="ui left floated blue attached item"><h3>test2</h3></div>
+			<div class="ui left floated violet attached item"><h3>test3</h3></div>
 			<button class="ui inverted green animated button">
 				<div class="visible content">test4</div>
-				<div class="hidden content">야이 씨발넘아</div>
+				<div class="hidden content">AA</div>
 			</button>
 			
 		</div>
-	
+
+		</div>
+
 		
-
-
+		<% include ./footer.ejs%>
+	
 	</body>
 </html>
