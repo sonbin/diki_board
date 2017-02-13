@@ -1,7 +1,7 @@
 #board_body {
   
-  
   width:1300px;
+
 }
 
 #body_color {
@@ -13,11 +13,11 @@
 	margin-right:20px;
 }
 
-#footer {
-	background-color:black; 
-	height:150px;
+#footer_seg {
+	background-color: black;
+	margin-top:80px;
+	height:110px;
 }
-
 
 
 a {
@@ -162,4 +162,29 @@ a {
 }
 #font_new {
 	color:black;
+}
+
+#boardd_seg1 {
+	background-color:#4F5256;
+}
+#boardd_text {
+	width:100%;
+	height:600px;
+	text-align: left;
+	position:relative;
+	
+}
+#modify_form {
+	display:none;
+
+}
+.delete_confirm {
+	float:center;
+	display:none;
+	position:relative;
+	margin:auto;
+	width:450px;
+	height:180px;
+	background-color:grey;
+	
 }

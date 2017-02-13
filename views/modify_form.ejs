@@ -1,0 +1,41 @@
+		
+	
+	
+
+	
+			<div class="ui divider"></div>
+
+			<div class="ui center aligned container">
+
+				<div class="ui form">
+
+					<form id="modifyAction" action="/?mode=modify" method="post">
+
+						<div class="three fields">
+							<div class="field">
+								<label id="new_word"><%=content.writer%></label>
+							</div>
+							<div class="field">
+								<input type="text" class="modTitle_" id="modTitle" name="modTitle" placeholder="Title">
+							</div>
+							<div class="field">
+								<input type="password" class="modPassword_" id="modPassword" name="modPassword" placeholder="Password">
+							</div>
+						</div>
+				
+						<div class="field"><textarea class="modContent_" name="modContent" id="boardd_text"></textarea></div>
+
+						<input type="hidden" id="modID" name="modID" value="<%=content._id%>">
+					</form>
+
+					
+
+					<div id="lower_grp">
+						<div class="ui submit button"><a onclick="modSubmit();">확인</a></div>
+						<div class="ui submit button"><a onclick="modCancel('add');">취소</a></div>
+					</div>
+					
+
+				
+				</div>
+			</div>

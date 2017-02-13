@@ -3,46 +3,159 @@
 	<head>
 		<% include ./head.ejs %>
 	</head>
-
 	<body id="body_color">
-		
-		<!--header-->
-		
-		<% include ./header.ejs %>
 
+		<!--header-->	
+		<% include ./header.ejs %>
 		<!--header End-->
 
 		<!--Main menu-->
-
-		<div class="ui center aligned container" id="board_body">
+		<div class="ui center aligned container">
 
 			<% include ./header_menu.ejs %>
-
 		<!--Main menu-->
-		<div class="ui piled segment">
-			<div class="view_writer"><%=content.writer%></div>
-			<div class="view_title"><%=content.title%></div>
-			<div class="view_date"><%=content.date%></div>
-		</div>
-
-		
-		<div class="ui center column">
-			<div class="margin top"></div>
-			<div class="ui left floated green item"><%=content.contents%></div>
-			<div class="ui left floated red attached item"><h3>test1</h3></div>
-			<div class="ui left floated blue attached item"><h3>test2</h3></div>
-			<div class="ui left floated violet attached item"><h3>test3</h3></div>
-			<button class="ui inverted green animated button">
-				<div class="visible content">test4</div>
-				<div class="hidden content">AA</div>
-			</button>
+			<div id="boardd_body">
+					<div class="ui sizer vertical segment" style="background-color:white;">
+  						<div class="ui huge header"><%=content.title%></div>
+  							
+  						<div class="ui small header">
+  							<div class="ui left floated header" ></div>
+							<div class="ui right floated header"></div>					
+						</div>
+					</div>
 			
-		</div>
+					<div class="ui sizer vertical segment" style="background-color:white;">						
+  						<div class="ui medium left floated header"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=content.writer%></div>
+  						<div class="ui medium right floated header"><%=content.date%></div>
+  						<p></p><br/>											
+					</div>
+			
+					<div class="ui divider"></div>
+				
+				 <div class="ui text segment"id="boardd_text" >
+					<%=content.contents%>
+				 </div>
+
+				 <div class="ui container">
+				 	
+				 		<button class="ui center floated button"><a onclick="modifyContents();"> 수정</a></button>
+				 		<button class="ui center floated button"><a onclick="deleteContents();"> 삭제</a></button>
+				 		<button class="ui center floated button"><a href="/"> 목록</a></button>
+				 	
+				 </div>
+			</div>
+
+				 <div id="modify_form">
+					
+			<div class="ui divider"></div>
+			<div class="ui center aligned container">
+
+				<div class="ui form">
+
+					<form id="modifyAction" action="/?mode=modify" method="post">
+
+						<div class="three fields">
+							<div class="field">
+								<label id="new_word"><%=content.writer%></label>
+							</div>
+							<div class="field">
+								<input type="text" class="modTitle_" id="modTitle" name="modTitle" placeholder="Title">
+							</div>
+							<div class="field">
+								<input type="password" class="modPassword_" id="modPassword" name="modPassword" placeholder="Password">
+							</div>
+						</div>
+				
+						<div class="field"><textarea class="modContent_" name="modContent" id="modText"></textarea></div>
+
+						<input type="hidden" id="modID" name="modID" value="<%=content._id%>">
+					</form>
+
+				
+					<div id="lower_grp">
+						<div class="ui submit button"><a onclick="modSubmit();">확인</a></div>
+						<div class="ui submit button"><a onclick="modCancel('modify');">취소</a></div>
+					</div>
+					
+			
+					</div>
+				</div>
+			</div>
+
+			<div class="delete_confirm">
+				<h2> 비밀 번호를 입력하면 글이 삭제됩니다.</h2>
+				<input type="password" id="delPassword" name="delPassword">
+				<button onclick="deleteConfirm();">삭제</button>
+				<button onclick="cancelForm();">취소</button>
+
+			</div>
+
+
+				<script>
+					function modifyContents(){
+						$('#boardd_body').hide();
+						$('#modify_form').show();
+			
+						$('.modTitle_').val('<%=content.title%>');
+						$('.modContent_').html('<%=content.contents%>');
+					}
+
+					function modSubmit(){
+
+						var title = $('#modTitle').val();
+						var content = $('#modText').val();
+						var modPassword = $('#modPassword').val();
+						console.log(content);
+						console.log(title);
+
+						var chkpw = checkPW(modPassword);
+
+						if(chkpw == true){
+							if(title == '' || content == ''){ 
+								alert('제목과 내용 모두 있어야 합니다.'); 
+								return; 
+							}else{
+								$('#modifyAction').submit();
+							}
+						}else{
+							alert('글 작성 시 입력한 비밀 번호를 입력해주세요.');
+							return;
+						}
+					}
+			
+				function checkPW(inputPassword){
+
+            		var result = '';
+            	
+            		$.ajax({
+              	 		url: '/password/?id=<%=content._id%>',
+               	 		async: false,
+               	 		success: function(password) {
+                    		if(inputPassword == password) result = true;
+                    		else result = false;
+                		}
+            		});
+            			return result;
+        			}
+
+        			function deleteContents(){
+        				$('.delete_confirm').show();
+        			}
+
+        			function deleteConfirm(){
+        				var inputPassword = $('#delPassword').val();
+        				var chkpw = checkPW(inputPassword);
+        				if(chkpw == true){
+        					location.href="/delete?id=<%=content._id%>";
+        				}else{
+        					alert('글 작성 시 입력한 비밀 번호를 입력해주세요.');
+        					return;
+        				}
+        			}
+				</script>
 
 		</div>
-
-		
-		<% include ./footer.ejs%>
+	<% include ./footer.ejs%>
 	
 	</body>
 </html>
