@@ -1,0 +1,57 @@
+
+		<script>
+
+		function new_submit(option){
+				var inWriter = $('.addWriter_').val();
+				var inTitle = $('.addTitle_').val();
+				var inPassword = $('.addPassword_').val();
+				var inContent = $('.addContent_').val();
+
+				if(option == 'add'){
+
+				if(inWriter == '' || inTitle == '' || inPassword=='' || inContent==''){
+
+						alert('내용을 모두 입력해야 합니다.');
+						return
+				}else{$('#writeAction').submit();}}}
+
+			function new_cancel(option){
+
+				if(option == 'add'){
+					var selection = confirm('취소하시겠습니까?');
+					if(selection==true){
+
+						$(location).attr('href','/');
+					
+					}else if(selection==false){ return;
+					 }}}
+
+		</script>
+	
+			<div class="ui divider"></div>
+			<div class="ui segment">
+				<div class="ui form">
+					<form id="writeAction" action="/" method="post">
+						<div class="three fields">
+							<div class="field">
+								<label  id="new_word">작성자</label>
+								<input type="text" class="addWriter_" name="addWriter" placeholder="작성자">
+							</div>
+							<div class="field">
+								<label  id="new_word">제목</label>
+								<input type="text" class="addTitle_" name="addTitle" placeholder="제목">
+							</div>
+							<div class="field">
+								<label  id="new_word">작성자</label>
+								<input type="text" class="addPassword_" name="addPassword" placeholder="Password">
+							</div>
+						</div>
+				
+						<div class="field"><textarea class="addContent_" name="addContent" cols="80" rows="20"></textarea></div>
+					</form>
+					<div id="lower_grp">
+						<div class="ui submit button"><a onclick="new_submit('add');">확인</a></div>
+						<div class="ui submit button"><a onclick="new_cancel('add');">취소</a></div>
+					</div>
+				</div>
+			</div>

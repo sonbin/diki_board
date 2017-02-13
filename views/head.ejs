@@ -8,34 +8,9 @@
 		<link rel="stylesheet" href="../lib/semantic.min.css">
 
 		<script>
-			function new_submit(option){
-				var inWriter = $('.addWriter_').val();
-				var inTitle = $('.addTitle_').val();
-				var inPassword = $('.addPassword_').val();
-				var inContent = $('.addContent_').val();
 
-				if(option == 'add'){
-
-				if(inWriter == '' || inTitle == '' || inPassword=='' || inContent==''){
-
-						alert('내용을 모두 입력해야 합니다.');
-						return
-				}else{$('#writeAction').submit();}}}
-
-			function new_cancel(option){
-
-				if(option == 'add'){
-					var selection = confirm('취소하시겠습니까?');
-					if(selection==true){
-
-						$(location).attr('href','/');
-					
-					}else if(selection==false){ return;
-					 }}}
-
-			function displayForm(){
-				$('#write_form').show();
-				$('#main_board').hide();
-			}
+			function displayForm(){ 
+				$('#write_form').show();  
+			}  
 
 		</script>

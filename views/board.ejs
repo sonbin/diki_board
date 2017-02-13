@@ -6,7 +6,9 @@
 
 	</head>
 
-	<body id="body_color"> 
+	<body id="body_color">
+
+
 	<!--header--> 
 	<% include ./header.ejs %>
 	<!--header End-->
@@ -81,6 +83,7 @@
 
 	<!--second content start-->
 
+	<div id="main_board">
 			<% var i = 0; %>
 			<% if(content.length > 0){ %>
 
@@ -106,14 +109,19 @@
 			<% }else{ %>
 					게시물이 없습니다.</td>
 			<% } %>
+		</div>
+		<br/><br/>
 		<div class="ui left aligned label" id="second_title">
 			<a href='#' onclick="displayForm();" id="font_new"><b>글 작성</b></a>
 		</div>
 
-		<!--Write form-->
 		
-		<% include ./write_form.ejs %>
 
+		<!--Write form-->
+
+		<div id="write_form">
+			<% include ./write_form.ejs %>
+	    </div>
 		<!--Write form End!-->
 
 	
