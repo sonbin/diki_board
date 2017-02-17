@@ -1,0 +1,94 @@
+<!--댓글 리스트 시작-->
+
+	<br/><br/>
+	<div class="ui divider"></div>
+	<br/>
+	<div class="ui middle aligned divided list" id="rep_list">
+		
+			<%if(content.comments.length>0){%>
+				<%var commentsList = content.comments;%>
+				<%for(var i=0; i<commentsList.length; i++){%>
+					<%if(i<5){%>
+
+						<div class="ui left floated image label">
+							<img class="ui avatar image" src="../images/test04.jpg">
+							<%=commentsList[i].name%>
+						</div>
+
+						<div class="ui content">
+							<%=commentsList[i].memo%>
+						</div>
+						<div class="ui right floated button">삭제 </div><br/>
+						<div class="ui content">/<%=commentsList[i].date%></div>
+
+						<div class="ui divider"></div>
+
+					<%}%>
+				<%}%>
+			<%}else{%>
+
+				<div class="ui content">
+					댓글이 없습니다.
+				</div>
+			<%}%>
+	</div>
+
+		<div class="reply_pagination">
+
+			<ul>
+				<%for(var i=1; i<=replyPage; i++){ %>
+					<a href="#" onclick="changePage(<%=i%>);"><li><%=i%> </li></a>
+				<%}%>
+			</ul>
+		</div>
+	<br/><br/><br/>
+
+  <!--댓글 리스트 끝-->
+
+
+	<div class="ui divider"></div><br/>
+
+	<div class="ui form">
+
+
+		<form id="replyAction" action="/reply" method="post">
+
+			<div class="reply_writer">
+				<input type="text" class="replyWriter" id="replyWriter" name="replyWriter" placeholder="댓글작성자">
+			</div>
+
+			<div class="reply_comment">
+			<textarea class="replyComment" id="replyComment" name="replyComment" rows="3" cols="30"> </textarea>
+			</div>
+		
+			<input type="hidden" name="reply_ID" id="replyID" value="<%=content._id%>"><br/>
+			<button class="ui right floated button" type="submit">등록</button>	
+		</form>
+		</br>
+
+	</div>
+	
+	<script>
+		function changePage(page){
+
+			$.get('/reply?id=<%=content._id%>&page='+page+"&max=<%=content.comments.length%>",function(pageQ){
+
+				var output = '';
+				
+
+				for(var i=0; i<pageQ.length; i++){
+
+					output += '<div class="reply_content"><div class="reply_info">'+pageQ[i].name+'/'+pageQ[i].date+'</div>';
+
+					output += '<div class="reply_text">'+pageQ[i].memo.replace(/\\r\\n/gi," ")+'</div></div>';
+
+				}
+
+
+				$('#rep_list').html(output);
+
+
+			});
+		}
+	</script>
+	

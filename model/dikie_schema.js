@@ -13,7 +13,9 @@ var BoardSchema = mongoose.Schema({
 	date:{type:Date,default:Date.now},
 	count:{type:Number,default:0},
 	updated:[{contents:String,date:{type:Date,default:Date.now}}],
-	deleted:{type:Boolean,default:false}
+	deleted:{type:Boolean,default:false},
+	fileUp:[String]
+
 });
 
 

@@ -62,7 +62,7 @@
                 <% for(var l=0; l<6; l++){%>
                     <div class="card">
                       <div class="image" id="termi2">
-                        <img src="../images/test02.jpg">
+                        <img src="../images/test07.gif">
                      </div>
                     <div class="extra" id="ex6">
                   </div>
@@ -101,7 +101,20 @@
 						   <div class="item">
 						   		<div class="description" id="second_writer"><%=item.writer%>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 						   		<div class="description" id="second_writer"><%=item.date%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</div>
-								<div class="description" id="second_writer">Count:<%=item.count%>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+						   		<div class="description" id="second_writer">
+								<% 
+								  var fileCnt = ""; 
+								  if(item.fileUp.length != 0) fileCnt = "파일:"+item.fileUp.length; 
+								%> 
+								&nbsp;&nbsp;<%=fileCnt%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|
+							
+								</div>
+
+								<div class="description" id="second_writer">Count:<%=item.count%>&nbsp;&nbsp;&nbsp;&nbsp;|</div>
+
+								
+
 						   </div>
 						 </div>
 				<% }) %>
@@ -110,6 +123,14 @@
 					게시물이 없습니다.</td>
 			<% } %>
 		</div>
+		<br/><br/>
+
+		<div id="paging"> 
+			<% for(var k=1; k<pagination+1; k++){ %>
+					<b><a href="/?page=<%=k%>" class="next-page"><%=k%></a></b>
+				<%}%>
+		</div>
+
 		<br/><br/>
 		<div class="ui left aligned label" id="second_title">
 			<a href='#' onclick="displayForm();" id="font_new"><b>글 작성</b></a>

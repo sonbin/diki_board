@@ -26,6 +26,7 @@
 			
 					<div class="ui sizer vertical segment" style="background-color:white;">						
   						<div class="ui medium left floated header"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=content.writer%></div>
+  						<div class="ui medium center floated header" id="download-file"></div>
   						<div class="ui medium right floated header"><%=content.date%></div>
   						<p></p><br/>											
 					</div>
@@ -33,16 +34,26 @@
 					<div class="ui divider"></div>
 				
 				 <div class="ui text segment"id="boardd_text" >
-					<%=content.contents%>
-				 </div>
-
-				 <div class="ui container">
 				 	
+				 	<script> 
+				 	var dbCon = '<%=content.contents%>'; 
+				 	var Board_Con = dbCon.replace(/\r\n/gi,"<br>");
+				 	var Board_Con2 = Board_Con.replace(/\s/gi,"&nbsp;");
+				 	console.log(Board_Con2);
+				 	var board_in = $('#boardd_text');
+				 	board_in.html(Board_Con2);
+				 	</script>
+
+				 	
+				 </div>
+				 <div class="ui container">				 	
 				 		<button class="ui center floated button"><a onclick="modifyContents();"> 수정</a></button>
 				 		<button class="ui center floated button"><a onclick="deleteContents();"> 삭제</a></button>
-				 		<button class="ui center floated button"><a href="/"> 목록</a></button>
-				 	
-				 </div>
+				 		<button class="ui center floated button"><a href="/"> 목록</a></button>		</div>
+
+				<div id="comment">
+					<% include ./comment.ejs %>
+				</div>				 
 			</div>
 
 				 <div id="modify_form">
@@ -64,6 +75,7 @@
 							<div class="field">
 								<input type="password" class="modPassword_" id="modPassword" name="modPassword" placeholder="Password">
 							</div>
+
 						</div>
 				
 						<div class="field"><textarea class="modContent_" name="modContent" id="modText"></textarea></div>
@@ -95,7 +107,8 @@
 					function modifyContents(){
 						$('#boardd_body').hide();
 						$('#modify_form').show();
-			
+						
+
 						$('.modTitle_').val('<%=content.title%>');
 						$('.modContent_').html('<%=content.contents%>');
 					}
@@ -152,6 +165,43 @@
         					return;
         				}
         			}
+
+        			$(function(){
+        				var fileUp = '<%=content.fileUp%>';
+        				var files = '';
+        				var cnt = '';
+        				var output = '';
+        				var file_title ='';
+        				if(fileUp != ""){
+        					files = fileUp.split(',');
+        					cnt = files.length;
+        					for(var i=0; i<cnt; i++){
+
+        						var file_title = files[i].split('uploads')[1].split(':')[0];
+        						
+        						console.log(file_title);
+        						
+        						output += "<button type='button' onclick=downloadFiles('"+file_title+"'); >";
+        						
+        						output += "<span id='downloadFile'>"+files[i].split(':')[1]+"</span>";
+        						output += "</button>";
+        					}
+        				} else {
+        					output ="파일이 없습니다.";
+        				}
+        					$('#download-file').html(output);
+        			});
+
+
+
+        			function downloadFiles(filepath){
+        				var path = filepath;
+        				alert(path)
+        				if(confirm("파일이 다운로드 됩니다.") == true ){
+        				location.href='/download/'+path;
+        				}
+        			}
+        			
 				</script>
 
 		</div>

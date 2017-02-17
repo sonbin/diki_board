@@ -8,10 +8,12 @@ var config = require('./config');
 var mongoose = require('mongoose');
 
 
+
 var users = require('./routes/users');
 var index = require('./routes/contents.js')
-
+var diki_engine = require('./routes/diki_engine.js');
 var app = express();
+
 
 
 mongoose.connect(config.dbURL());
@@ -39,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', users);
 app.use('/',index)
+app.use('/diki_engine',diki_engine);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

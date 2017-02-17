@@ -31,7 +31,7 @@
 			<div class="ui divider"></div>
 			<div class="ui segment">
 				<div class="ui form">
-					<form id="writeAction" action="/?mode=add" method="post">
+					<form id="writeAction" action="/?mode=add" method="post" enctype="multipart/form-data">
 						<div class="three fields">
 							<div class="field">
 								<label  id="new_word">작성자</label>
@@ -48,6 +48,9 @@
 						</div>
 				
 						<div class="field"><textarea class="addContent_" name="addContent" cols="80" rows="20"></textarea></div>
+
+						<input type="file" class="inputFile" id="UploadFile" name="UploadFile" multiple>
+
 					</form>
 					<div id="lower_grp">
 						<div class="ui submit button"><a onclick="new_submit('add');">확인</a></div>
