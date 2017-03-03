@@ -13,12 +13,19 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({storage:storage});
+var Thumbnail = require('thumbnail');
+
+
+
 
 
 
 router.get('/',function(req,res){
 
 
+	var imgList =[];
+
+	
 
 	var page = req.param('page');
 	if(page==null) {page=1;}
@@ -30,11 +37,18 @@ router.get('/',function(req,res){
 	BoardContents.count({deleted:false},function(err,totalCount){
 		if(err) throw err;
 
-		pageNum = Math.ceil(totalCount/limitSize);
+			fs.readdir('./thumbnails/',function(err,files){
+				if(err) console.error(err);
+				imgList = files;
+				console.log(imgList);
+				
+
+			pageNum = Math.ceil(totalCount/limitSize);
 
 			BoardContents.find({deleted:false}).sort({date:-1}).skip(skipSize).limit(limitSize).exec(function(err,pageContents){
 				if(err) throw err;
-				res.render('board',{content:pageContents,pagination:pageNum});
+				res.render('board',{content:pageContents,pagination:pageNum,files:imgList});
+			});
 		});
 	});
 });
@@ -148,6 +162,37 @@ router.get('/download/:path',function(req,res){
 	
 	
 });
+
+
+router.post('/upload',upload.single('uploadImg'),function(req,res){
+	
+	var filename =req.file.filename;
+
+	var thumbnail = new Thumbnail('../uploads','../thumbnails');
+	thumbnail.ensureThumbnail(filename,null,100,function(err,filename){
+		if(err) console.error(err);
+		
+		console.log(filename);
+		res.redirect('/thumb');
+	})
+})
+
+
+router.get('/thumb',function(req,res){
+	var imgList =[];
+
+	fs.readdir('../thumbnails',function(err,files){
+		if(err) console.error(err);
+		imgList = files;
+		console.log(imgList);
+		res.render('thumbnail',{files:imgList})
+	});
+	
+});
+
+router.get('/webgame',function(req,res){
+	res.render('webgame');
+})
 
 
 function addComment(id,writer,comment){
@@ -266,7 +311,7 @@ function renameUploadFile(itemId,upFile){
 		rename[i]=tmpPath[i].split('/')[index[i]-1];
 		fileName[i]=itemId+"_"+getFileDate(new Date())+"_"+rename[i];
 		fullName[i]=fileName[i]+":"+newFile[i].originalname.split('.')[0];
-		fsName[i]=getDirname(1)+"upload/"+fileName[i];
+		fsName[i]=getDirname(1)+"uploads/"+fileName[i];
 	}
 
 	renameForUpload.tmpname = tmpPath;

@@ -55,25 +55,11 @@
  <!--first content right menu start -->
 
 	  <div class="twelve wide column">
-      <table class="ui very basic collapsing table" id="table_two">
-        <tbody>
-          <% for(var k=0; k<3; k++){%>
-           <tr> <td> <div class="ui six doubling cards">
-                <% for(var l=0; l<6; l++){%>
-                    <div class="card">
-                      <div class="image" id="termi2">
-                        <img src="../images/test07.gif">
-                     </div>
-                    <div class="extra" id="ex6">
-                  </div>
-              </div>
-              <%}%>
-            </div>
-            </td>
-          </tr>
-          <%}%>
-          </tbody>
-      </table>
+      	<div class="thumbnail-list">
+      		<% files.forEach(function(file){ %>
+      			<img src="../thumbnails/<%=file%>">
+      		<%});%>
+      	</div>
     </div>
 </div>
 
@@ -136,7 +122,9 @@
 			<a href='#' onclick="displayForm();" id="font_new"><b>글 작성</b></a>
 		</div>
 
-		
+		<div>
+			<img src="../images/ktx.jpg">
+		</div>
 
 		<!--Write form-->
 
